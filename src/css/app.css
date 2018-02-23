@@ -19,7 +19,7 @@
   align-items: center;
   padding: 0 1rem;
 }
-.column-name h1 {
+.column-name h4 {
   margin: 0;
 }
 .column:nth-child(1) .column-name {
