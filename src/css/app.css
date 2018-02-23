@@ -4,10 +4,11 @@
   flex-wrap: wrap;
 }
 .app {
-  padding: 0 25px;
+  padding: 1rem 25px;
 }
 .column {
   flex: 1;
+  border: 1px solid #333;
 }
 .column:not(:first-child) {
   margin-left: 25px;
@@ -34,10 +35,27 @@
 .column:nth-child(4) .column-name {
   background-color: #E8741E;
 }
+.column .button-container {
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+}
+.button-container button {
+  padding: 2px 1rem;
+}
 .card {
   display: flex;
-  padding: 1rem;
+  padding: 1rem 0;
 }
 .card p {
   margin: auto;
+  padding: 5px;
+  text-align: center;
+}
+.card button {
+  background: none;
+  border: none;
+}
+.card .invisible-span {
+  width: 12.625px;
 }

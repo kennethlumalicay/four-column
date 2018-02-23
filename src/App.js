@@ -9,29 +9,29 @@ class App extends Component {
         {
           name: 'apple',
           cards: [
-            'cool',
-            'awesome'
+            'salad',
+            'pizza'
           ]
         },
         {
           name: 'banana',
           cards: [
-            'dood',
-            'hey'
+            'grapes',
+            'hamburger'
           ]
         },
         {
           name: 'bacon',
           cards: [
-            'let\'s go!',
-            'mooooo!'
+            'adobo',
+            'tuna'
           ]
         },
         {
           name: 'tomato',
           cards: [
-            'believe',
-            'quack'
+            'spaghetti',
+            'carbonara'
           ]
         },
       ]
@@ -55,7 +55,7 @@ class App extends Component {
     });
   }
 
-  handleSwitch(event, dir, index, msg) {
+  handleSwitch(event, dir, index, msg, msgIndex) {
     const left = dir === 'left';
     const newColumnData = this.state.columnData.map((e,i) => {
       if((index-1 === i && left) || (index+1 === i && !left)) {
@@ -70,7 +70,7 @@ class App extends Component {
       if(index === i) {
         return {
           ...e,
-          cards: [...e.cards.filter(e => e !== msg)]
+          cards: [...e.cards.filter((e,cardIndex) => msgIndex !== cardIndex)]
         }
       }
       return e;
@@ -90,7 +90,7 @@ class App extends Component {
               handleAdd={event => this.handleAdd(event, e.name)}
               leftEdge={i < 1}
               rightEdge={i === this.state.columnData.length - 1}
-              handleLeftRight={(e, dir, msg) => this.handleSwitch(e, dir, i, msg)}
+              handleLeftRight={(e, dir, msg, msgIndex) => this.handleSwitch(e, dir, i, msg, msgIndex)}
             />
           )
         }
@@ -112,12 +112,12 @@ const Column = props => (
           message={e}
           leftEdge={props.leftEdge}
           rightEdge={props.rightEdge}
-          handleLeftRight={(event, dir) => props.handleLeftRight(event, dir, e)}
+          handleLeftRight={(event, dir) => props.handleLeftRight(event, dir, e, i)}
         />
       )
       : null
     }
-    <div>
+    <div className='button-container'>
       <button onClick={e => props.handleAdd(e)} >Add</button>
     </div>
   </div>
@@ -127,7 +127,7 @@ const Card = props => (
   <div className='card'>
     {
       props.leftEdge
-      ? null
+      ? <span className='invisible-span'></span>
       : <button onClick={e => props.handleLeftRight(e, 'left')}>{'<'}</button>
     }
     
@@ -135,7 +135,7 @@ const Card = props => (
 
     {
       props.rightEdge
-      ? null
+      ? <span className='invisible-span'></span>
       : <button onClick={e => props.handleLeftRight(e, 'right')}>{'>'}</button> 
     }
     
