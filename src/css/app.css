@@ -1,17 +1,12 @@
 .app {
-  display: flex;
+  display: grid;
   justify-content: stretch;
-  flex-wrap: wrap;
-}
-.app {
-  padding: 1rem 25px;
+  grid: 1fr / 1fr 1fr 1fr 1fr;
+  grid-gap: 25px;
+  padding: 25px;
 }
 .column {
-  flex: 1;
   border: 1px solid #333;
-}
-.column:not(:first-child) {
-  margin-left: 25px;
 }
 .column .column-name {
   height: 30px;
